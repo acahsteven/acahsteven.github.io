@@ -488,19 +488,25 @@
   
     <article id="comments" lazyload>
       
-  <div id="gitalk-container"></div>
+  <div id="twikoo"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
         var options = Object.assign(
-          {"clientID":"Ov23liTym5rKdZOW630W","clientSecret":"f6fc0de17650955c32bfbdef79dfcda1d0eeb11b","repo":"blog_comments","owner":"acahsteven","admin":["acahsteven"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {"envId":"https://blogcommentsmongodb.vercel.app","region":"ap-shanghai","path":"window.location.pathname"},
           {
-            id: '427b0774363e764f2f83923f380870df'
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
           }
         )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
+        twikoo.init(options)
       });
     });
   </script>

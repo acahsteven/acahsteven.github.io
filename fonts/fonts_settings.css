@@ -5,6 +5,7 @@
 @import url('STFangsong/font.css');
 @import url('firacodelight/font.css');
 
+/*#comments::part(iframe) {font-family: 'georgialight', 'STFangsong' !important;}*/
 .active::before {font-family: 'iconfont' !important;}
 .post-prevnext .post-prev i, .post-prevnext .post-next i {font-size: 1.3rem !important;}
 .iconfont {font-weight: 100 !important;}
