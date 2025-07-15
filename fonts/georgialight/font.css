@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'GeorgiaLight';
+    font-style: normal;
+    font-weight: 400;
+    src: 
+    local('GeorgiaLight'),
+    url(./GeorgiaLight.woff2) format('woff2');
+  }

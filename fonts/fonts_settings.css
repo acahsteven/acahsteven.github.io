@@ -1,0 +1,16 @@
+@import url('georgia/font.css');
+@import url('georgialight/font.css');
+@import url('STZhongsong/font.css');
+@import url('STSong/font.css');
+@import url('STFangsong/font.css');
+@import url('firacodelight/font.css');
+
+.active::before {font-family: 'iconfont' !important;}
+.post-prevnext .post-prev i, .post-prevnext .post-next i {font-size: 1.3rem !important;}
+.iconfont {font-weight: 100 !important;}
+body, h1, h2, h3, h4, h5, h6, strong, .active {font-family: 'georgia', 'STZhongsong' !important;}
+/*body, h1, h2, h3, h4, h5, h6, strong {font-family: 'georgia', 'STZhongsong' !important;}*/
+p, .index-excerpt, .link-intro {font-family: 'georgialight', 'STSong';}
+p.h4, p.h5, p.toc-header {font-family: 'georgia', 'STZhongsong';}
+blockquote, blockquote>p {font-family: 'georgialight', 'STFangsong';}
+code, .markdown-body .highlight .notranslate {font-family: "fira code light" !important; font-feature-settings: liga !important;}
