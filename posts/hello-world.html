@@ -78,7 +78,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -423,7 +427,7 @@
     Fluid.utils.loadComments('#comments', function() {
       Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
         var options = Object.assign(
-          {"envId":"https://blogcommentsmongodb.vercel.app","region":"ap-shanghai","path":"window.location.pathname"},
+          {"envId":"https://blogcommentsmongodb.vercel.app","region":"ap-shanghai","path":"window.location.pathname","katex":{"delimiters":[{"left":"$$","right":"$$","display":true},{"left":"$","right":"$","display":false},{"left":"\\\\(","right":"\\\\)","display":false},{"left":"\\\\[","right":"\\\\]","display":true}],"throwOnError":false}},
           {
             el: '#twikoo',
             path: 'window.location.pathname',
