@@ -17,11 +17,11 @@
   
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
-  <meta name="theme-color" content="#379392">
+  <meta name="theme-color" content="#423f84">
   <meta name="author" content="acah">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文记录该博客搭建的过程。 首先致谢 llingy，是他自始至终给我提供了大量帮助和指导。   设想我几年前就想搭建一个自己的博客，但苦于时间精力有限和自己对各方面工作没有了解，我一直实际使用的都是洛谷博客，甚至连 GitHub Pages 都还处在起步阶段。 llingy 同学在九月末至十月初这段时间里基本完成了自己博客的搭建工作，并向我们展示。我确实很佩服他的摸索能力和实践能力，同时也产生了尝">
+    <meta name="description" content="本文记录该博客搭建的过程。 首先致谢 llingy，是他自始至终给我提供了大量帮助和指导。  设想 我几年前就想搭建一个自己的博客，但苦于时间精力有限和自己对各方面工作没有了解，我一直实际使用的都是洛谷博客，甚至连 GitHub Pages 都还处在起步阶段。 llingy 同学在九月末至十月初这段时间里基本完成了自己博客的搭建工作，并向我们展示。我确实很佩服他的摸索能力和实践能力，同时也产生了尝">
   
   
   
@@ -36,6 +36,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -78,11 +80,7 @@
 
 
   
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -192,6 +190,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.cnblogs.com/acahsteven" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>博客园</span>
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -209,7 +219,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/bgimg.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -359,53 +369,74 @@
                 <p>本文记录该博客搭建的过程。</p>
 <p>首先致谢 <a target="_blank" rel="noopener" href="https://llingy.ml/">llingy</a>，是他自始至终给我提供了大量帮助和指导。</p>
 <br />
-
-<h3 id="设想"><a href="#设想" class="headerlink" title="设想"></a>设想</h3><p>我几年前就想搭建一个自己的博客，但苦于时间精力有限和自己对各方面工作没有了解，我一直实际使用的都是洛谷博客，甚至连 GitHub Pages 都还处在起步阶段。</p>
+<h3 id="设想">设想</h3>
+<p>我几年前就想搭建一个自己的博客，但苦于时间精力有限和自己对各方面工作没有了解，我一直实际使用的都是洛谷博客，甚至连 GitHub Pages 都还处在起步阶段。</p>
 <p>llingy 同学在九月末至十月初这段时间里基本完成了自己博客的搭建工作，并向我们展示。我确实很佩服他的摸索能力和实践能力，同时也产生了尝试着给自己搭建一个博客的想法。</p>
-<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><p>2022 年 10 月 14 日晚上，从在我的计算机上安装 Node.js 开始，我的博客搭建起步了。</p>
+<h3 id="起步">起步</h3>
+<p>2022 年 10 月 14 日晚上，从在我的计算机上安装 Node.js 开始，我的博客搭建起步了。</p>
 <p>首先是安装 Node.js 和 Hexo。很快，我的 Hexo 就运行在 localhost 上了。</p>
 <p>接下来是选主题。<a target="_blank" rel="noopener" href="http://cyberangel.cn/">这位鸭厨老哥</a> 的主题是 Butterfly，我感觉不错，于是给我的博客也配置了这个主题。但很快我发现，这个主题的数学公式缩放比例不太对劲，疑似开了 <code>\large</code> 类似物，导致显示效果十分难看。于是我改而选择了 llingy 选用的 Fluid 主题。</p>
 <p>接下来是其它各种配置。完成后，运行在 localhost 上的我的博客就基本可以使用了。</p>
-<h3 id="域名与服务"><a href="#域名与服务" class="headerlink" title="域名与服务"></a>域名与服务</h3><h4 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h4><p>我选择 <code>cyberangel.ac.cn</code> 这个域名。</p>
+<h3 id="域名与服务">域名与服务</h3>
+<h4 id="域名">域名</h4>
+<p>我选择 <code>cyberangel.ac.cn</code> 这个域名。</p>
 <p>2022 年 10 月 16 日，我在腾讯云上购买了这个域名，并完成了实名认证。</p>
-<h4 id="Webify"><a href="#Webify" class="headerlink" title="Webify"></a>Webify</h4><p>2022 年 10 月 ?? 日，我购买了按量计费的 Webify 服务，并将我的博客部署到了上面。至此，可以通过腾讯云提供的项目默认域名来在公网上访问我的博客了。</p>
-<h3 id="字体美化"><a href="#字体美化" class="headerlink" title="字体美化"></a>字体美化</h3><p>这算是本次搭建工作的一项大工作。这项工作大概分散在 2022 年 10 月 17 日至 19 日完成。</p>
+<h4 id="Webify">Webify</h4>
+<p>2022 年 10 月 ?? 日，我购买了按量计费的 Webify 服务，并将我的博客部署到了上面。至此，可以通过腾讯云提供的项目默认域名来在公网上访问我的博客了。</p>
+<h3 id="字体美化">字体美化</h3>
+<p>这算是本次搭建工作的一项大工作。这项工作大概分散在 2022 年 10 月 17 日至 19 日完成。</p>
 <p>再次感谢 llingy 同学提供的大量帮助。</p>
-<h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><p>没有指定字体时，字体会由浏览器设置和用户环境决定。我选择将我的博客设置为我自己指定的字体。</p>
+<h4 id="概览">概览</h4>
+<p>没有指定字体时，字体会由浏览器设置和用户环境决定。我选择将我的博客设置为我自己指定的字体。</p>
 <p>具体地，我现在选择的字体是：</p>
 <ul>
-<li><p>中文正文：华文宋体（STSong）</p>
+<li>
+<p>中文正文：华文宋体（STSong）</p>
 </li>
-<li><p>中文引用：华文仿宋（STFangsong）</p>
+<li>
+<p>中文引用：华文仿宋（STFangsong）</p>
 </li>
-<li><p>其它中文内容：华文中宋（STZhongsong）</p>
+<li>
+<p>其它中文内容：华文中宋（STZhongsong）</p>
 </li>
-<li><p>英文和拉丁文正文：Georgia Light</p>
+<li>
+<p>英文和拉丁文正文：Georgia Light</p>
 </li>
-<li><p>英文和拉丁文引用：Georgia Light</p>
+<li>
+<p>英文和拉丁文引用：Georgia Light</p>
 </li>
-<li><p>代码：Fira Code Light</p>
+<li>
+<p>代码：Fira Code Light</p>
 </li>
-<li><p>其它西文内容（不含数学公式）：Georgia</p>
+<li>
+<p>其它西文内容（不含数学公式）：Georgia</p>
 </li>
-<li><p>数学公式：由 MathJax 独立渲染 $\LaTeX$，与以上设置没有关系</p>
+<li>
+<p>数学公式：由 MathJax 独立渲染 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span>，与以上设置没有关系</p>
 </li>
 </ul>
 <p>华文中宋做标题、华文宋体做正文，这是我从初二就开始用在我的作文上的字体模式。这一套字体正式而美观，并且我感觉还有一种印刷品的味道。</p>
-<h4 id="字体文件提供与字体子集化"><a href="#字体文件提供与字体子集化" class="headerlink" title="字体文件提供与字体子集化"></a>字体文件提供与字体子集化</h4><p>为了字体能够在各种地方正常显示，我们需要将字体文件提供给浏览器，当本地找不到所需字体时就从这些文件读取。Hexo 支持的是 woff2 格式的字体。</p>
+<h4 id="字体文件提供与字体子集化">字体文件提供与字体子集化</h4>
+<p>为了字体能够在各种地方正常显示，我们需要将字体文件提供给浏览器，当本地找不到所需字体时就从这些文件读取。Hexo 支持的是 woff2 格式的字体。</p>
 <p>我们将所需字体子集化成若干较小的文件，一个文件只有在有字符需要它时才会被加载，这样可以减少流量消耗，加快加载速度。</p>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>如果全局都使用统一的字体，可以像 llingy 同学一样直接在主题的 YAML 文件里面指定。不过我需要对不同的内容分别设置字体，所以需要写 CSS 来控制各项内容的字体，并将这个 CSS 文件的地址写到 YAML 的配置信息里面。</p>
+<h4 id="配置">配置</h4>
+<p>如果全局都使用统一的字体，可以像 llingy 同学一样直接在主题的 YAML 文件里面指定。不过我需要对不同的内容分别设置字体，所以需要写 CSS 来控制各项内容的字体，并将这个 CSS 文件的地址写到 YAML 的配置信息里面。</p>
 <p>第一遍写的时候，我将 <code>body</code> 的字体设成了 STSong，打算将需要换成 STZhongsong 的中文内容在下面覆盖设置。但之后我发现，有大量的地方需要重新设置为 STZhongsong。所以我选择了改换思路，先将整体设置为 STZhongsong，再单独将 <code>p</code> 设置成 STSong。这样就用简短的几条设置完成了整体字体的配置。</p>
-<h4 id="Fira-Code-与连字"><a href="#Fira-Code-与连字" class="headerlink" title="Fira Code 与连字"></a>Fira Code 与连字</h4><p>Fira Code 是一款适用于编程的免费字体，<a target="_blank" rel="noopener" href="https://github.com/tonsky/FiraCode">这里</a>是它的开源项目地址。Fira 是 Mozilla 主推的字体系列，而 Fira Code 是在 Fira Mono 基础上进一步补充开发出来的。</p>
+<h4 id="Fira-Code-与连字">Fira Code 与连字</h4>
+<p>Fira Code 是一款适用于编程的免费字体，<a target="_blank" rel="noopener" href="https://github.com/tonsky/FiraCode">这里</a>是它的开源项目地址。Fira 是 Mozilla 主推的字体系列，而 Fira Code 是在 Fira Mono 基础上进一步补充开发出来的。</p>
 <p>Fira Code 是 LibreOJ 的代码显示字体。2022 年暑假我在自己的电脑上安装了这个字体，之后就爱不释手，一直在用。相较于 Regular，我更喜欢 Light ——它线条细而流畅，十分清爽优雅。</p>
-<p>Fira Code 支持连字（Ligatures）。在支持并已启用了连字功能的环境上使用该字体，会在一些字母组合 &#x2F; 符号组合处应用自然美观的连字显示效果。</p>
+<p>Fira Code 支持连字（Ligatures）。在支持并已启用了连字功能的环境上使用该字体，会在一些字母组合 / 符号组合处应用自然美观的连字显示效果。</p>
 <p>只是把 <code>code</code> 的字体设置成 Fira Code Light 并没有启用连字功能。</p>
 <p>我在 Mozilla 的 MDN 上找到了一个在 CSS 里面启用连字的方法是将 <code>font-variant-ligatures</code> 设置为 <code>common-ligatures</code>，但是实测即使加上 <code>!important</code> 也不行。在和我摸索了一阵子之后，llingy 同学突然会了：将 <code>font-feature-settings</code> 设置为 <code>liga</code> 即可。</p>
 <p>——他是怎么突然知道的呢？是他的 VSCode 在编辑器的连字设置处弹窗告诉他“可以使用 <code>liga</code> <code>clig</code> 等来精细设置连字”，然后他就突然明白了，我们的问题顺利解决。</p>
-<h3 id="备案"><a href="#备案" class="headerlink" title="备案"></a>备案</h3><p>我的顶级域名是 <code>.cn</code>，所以我的域名需要依法备案才可以被正常访问。</p>
-<h4 id="出版许可（陕西省人民政府）"><a href="#出版许可（陕西省人民政府）" class="headerlink" title="出版许可（陕西省人民政府）"></a>出版许可（陕西省人民政府）</h4><p>To be continued…</p>
-<h4 id="ICP-备（工信部）"><a href="#ICP-备（工信部）" class="headerlink" title="ICP 备（工信部）"></a>ICP 备（工信部）</h4><p>To be continued…</p>
-<h4 id="公网安备（公安部）"><a href="#公网安备（公安部）" class="headerlink" title="公网安备（公安部）"></a>公网安备（公安部）</h4><p>To be continued…</p>
+<h3 id="备案">备案</h3>
+<p>我的顶级域名是 <code>.cn</code>，所以我的域名需要依法备案才可以被正常访问。</p>
+<h4 id="出版许可（陕西省人民政府）">出版许可（陕西省人民政府）</h4>
+<p>To be continued…</p>
+<h4 id="ICP-备（工信部）">ICP 备（工信部）</h4>
+<p>To be continued…</p>
+<h4 id="公网安备（公安部）">公网安备（公安部）</h4>
+<p>To be continued…</p>
 
                 
               </div>
@@ -628,7 +659,6 @@
 
 
 
-
     
 
     
@@ -814,49 +844,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

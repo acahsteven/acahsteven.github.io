@@ -17,11 +17,11 @@
   
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
-  <meta name="theme-color" content="#379392">
+  <meta name="theme-color" content="#423f84">
   <meta name="author" content="acah">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文是由今天写的分析 slide 直接搬运过来的。   题目情况逐题看 第 1 题：  签到题。  有图不连通的坑。  需要（用 meet in the middle 的）选手认识到需要维护最大、次大、第三大 这 3 项才可以保证转移不漏且正确。  或许可以警示我们不要盲目自信，该用草稿纸的时候就用草稿纸。    第 2 题：  签到题。  分类讨论一下各种情况，并写一个合适的数据结构，能讨论完备">
+    <meta name="description" content="本文是由今天写的分析 slide 直接搬运过来的。  题目情况 逐题看   第 1 题：   签到题。   有图不连通的坑。   需要（用 meet in the middle 的）选手认识到需要维护最大、次大、第三大 这 3 项才可以保证转移不漏且正确。   或许可以警示我们不要盲目自信，该用草稿纸的时候就用草稿纸。     第 2 题：   签到题。   分类讨论一下各种情况，并写一个合适的数">
   
   
   
@@ -36,6 +36,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -78,11 +80,7 @@
 
 
   
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -192,6 +190,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.cnblogs.com/acahsteven" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>博客园</span>
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -209,7 +219,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/bgimg.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -349,201 +359,280 @@
                 
                 <p>本文是由今天写的分析 slide 直接搬运过来的。</p>
 <br />
-
-<h3 id="题目情况"><a href="#题目情况" class="headerlink" title="题目情况"></a>题目情况</h3><h4 id="逐题看"><a href="#逐题看" class="headerlink" title="逐题看"></a>逐题看</h4><ul>
-<li><p>第 1 题：</p>
+<h3 id="题目情况">题目情况</h3>
+<h4 id="逐题看">逐题看</h4>
 <ul>
-<li><p>签到题。</p>
-</li>
-<li><p>有图不连通的坑。</p>
-</li>
-<li><p>需要（用 meet in the middle 的）选手认识到需要维护最大、次大、<strong>第三大</strong> 这 3 项才可以保证转移不漏且正确。</p>
-</li>
-<li><p>或许可以警示我们不要盲目自信，该用草稿纸的时候就用草稿纸。</p>
-</li>
-</ul>
-</li>
-<li><p>第 2 题：</p>
+<li>
+<p>第 1 题：</p>
 <ul>
-<li><p>签到题。</p>
+<li>
+<p>签到题。</p>
 </li>
-<li><p>分类讨论一下各种情况，并写一个合适的数据结构，能讨论完备并写对即可。</p>
+<li>
+<p>有图不连通的坑。</p>
+</li>
+<li>
+<p>需要（用 meet in the middle 的）选手认识到需要维护最大、次大、<strong>第三大</strong> 这 3 项才可以保证转移不漏且正确。</p>
+</li>
+<li>
+<p>或许可以警示我们不要盲目自信，该用草稿纸的时候就用草稿纸。</p>
 </li>
 </ul>
 </li>
-<li><p>第 3 题：</p>
+<li>
+<p>第 2 题：</p>
 <ul>
-<li><p>带一个诈骗的智慧题。</p>
+<li>
+<p>签到题。</p>
 </li>
-<li><p>首先，当一张有向图满足 <strong>所有点出度均为 $1$</strong>（条件 1）时，其必然构成一个基环内向树森林，从而已经满足 <strong>所有点都可以到达一个大小大于 $1$ 的 SCC</strong>（条件 2）。所以，只需要判断条件 1 是否满足即可。</p>
-</li>
-<li><p>如何维护当前是否所有点出度均为 $1$ 呢？</p>
-</li>
-<li><p>如果将每个点的出度情况排成一个序列，处理序列是否和一个固定序列相同，就可以序列哈希了。</p>
-</li>
-<li><p>据说可以参考 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1746F">CF1746F</a> 这道题的想法。</p>
+<li>
+<p>分类讨论一下各种情况，并写一个合适的数据结构，能讨论完备并写对即可。</p>
 </li>
 </ul>
 </li>
-<li><p>第 4 题：</p>
+<li>
+<p>第 3 题：</p>
 <ul>
-<li><p>其实算是中规中矩的 DDP 题。</p>
+<li>
+<p>带一个诈骗的智慧题。</p>
 </li>
-<li><p>当 $k &#x3D; 1, 2$ 时，易见直接在 $u \to v$ 的路径上选点是优的；$k &#x3D; 3$ 时可以绕出去一次，并且这个绕出去绕到的点到 $u \to v$ 路径距离为 $1$。</p>
+<li>
+<p>首先，当一张有向图满足 <strong>所有点出度均为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></strong>（条件 1）时，其必然构成一个基环内向树森林，从而已经满足 <strong>所有点都可以到达一个大小大于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 的 SCC</strong>（条件 2）。所以，只需要判断条件 1 是否满足即可。</p>
 </li>
-<li><p>树上路径上 DP，考虑 DDP。</p>
+<li>
+<p>如何维护当前是否所有点出度均为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 呢？</p>
+</li>
+<li>
+<p>如果将每个点的出度情况排成一个序列，处理序列是否和一个固定序列相同，就可以序列哈希了。</p>
+</li>
+<li>
+<p>据说可以参考 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1746F">CF1746F</a> 这道题的想法。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>第 4 题：</p>
+<ul>
+<li>
+<p>其实算是中规中矩的 DDP 题。</p>
+</li>
+<li>
+<p>当 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">k = 1, 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span></span></span></span> 时，易见直接在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>→</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">u \to v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span> 的路径上选点是优的；<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">k = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 时可以绕出去一次，并且这个绕出去绕到的点到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>→</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">u \to v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span> 路径距离为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。</p>
+</li>
+<li>
+<p>树上路径上 DP，考虑 DDP。</p>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="总体看"><a href="#总体看" class="headerlink" title="总体看"></a>总体看</h4><ul>
-<li><p>四道题中有三道题以图论为载体，其中第 3 题对两个约束条件的关系（条件 1 是条件 2 的<strong>充分</strong>不必要条件）的观察考察了图论素养和理解力，另外两道题则与图论本身关系不大。</p>
+<h4 id="总体看">总体看</h4>
+<ul>
+<li>
+<p>四道题中有三道题以图论为载体，其中第 3 题对两个约束条件的关系（条件 1 是条件 2 的<strong>充分</strong>不必要条件）的观察考察了图论素养和理解力，另外两道题则与图论本身关系不大。</p>
 </li>
-<li><p>前两题都需要细致的分类讨论。</p>
+<li>
+<p>前两题都需要细致的分类讨论。</p>
 </li>
-<li><p>后两题都需要观察出一些事实并基于此解答。</p>
+<li>
+<p>后两题都需要观察出一些事实并基于此解答。</p>
 </li>
-<li><p>第 3 题可能需要题目积累或灵机一动，另三道题实际上不是十分难想到。</p>
+<li>
+<p>第 3 题可能需要题目积累或灵机一动，另三道题实际上不是十分难想到。</p>
 </li>
-<li><p>比较需要代码能力和速度。</p>
+<li>
+<p>比较需要代码能力和速度。</p>
 </li>
-<li><p>洛谷上目前给四道题的评级是：蓝、绿、紫、紫，我个人觉得是合理的。</p>
+<li>
+<p>洛谷上目前给四道题的评级是：蓝、绿、紫、紫，我个人觉得是合理的。</p>
 </li>
 </ul>
 <br />
-
-<h3 id="个人情况"><a href="#个人情况" class="headerlink" title="个人情况"></a>个人情况</h3><h4 id="得分"><a href="#得分" class="headerlink" title="得分"></a>得分</h4><ul>
-<li><p>洛谷上的民间数据测评结果：$\rm{\color{red}35\color{black}+\color{green}100\color{black}+\color{red}25\color{black}+\color{orange}40\color{black}&#x3D;\color{orange}200\ \color{black}pts}$；</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://119.27.163.117/">InfOJ</a> 上的民间数据测评结果：$\rm{\color{red}30\color{black}+\color{green}100\color{black}+\color{orange}40\color{black}+\color{orange}40\color{black}&#x3D;\color{orange}210\ \color{black}pts}$。</p>
-</li>
-</ul>
-<h4 id="逐题分析"><a href="#逐题分析" class="headerlink" title="逐题分析"></a>逐题分析</h4><ul>
-<li><p>第 1 题：</p>
+<h3 id="个人情况">个人情况</h3>
+<h4 id="得分">得分</h4>
 <ul>
-<li><p>开场约 20min 想到做法，约 40min 过了样例。</p>
+<li>
+<p>洛谷上的民间数据测评结果：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathcolor="red"><mn>35</mn><mstyle mathcolor="black"><mo>+</mo><mstyle mathcolor="green"><mn>100</mn><mstyle mathcolor="black"><mo>+</mo><mstyle mathcolor="red"><mn>25</mn><mstyle mathcolor="black"><mo>+</mo><mstyle mathcolor="orange"><mn>40</mn><mstyle mathcolor="black"><mo>=</mo><mstyle mathcolor="orange"><mn>200</mn><mtext> </mtext><mstyle mathcolor="black"><mi mathvariant="normal">p</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">s</mi></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\rm{\color{red}35\color{black}+\color{green}100\color{black}+\color{red}25\color{black}+\color{orange}40\color{black}=\color{orange}200\ \color{black}pts}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord"><span class="mord mathrm" style="color:red;">35</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin" style="color:black;">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathrm" style="color:green;">100</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin" style="color:black;">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathrm" style="color:red;">25</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin" style="color:black;">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathrm" style="color:orange;">40</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel" style="color:black;">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathrm" style="color:orange;">200</span><span class="mspace" style="color:orange;"><span style="color:orange;"> </span></span><span class="mord mathrm" style="color:black;">pts</span></span></span></span></span></span>；</p>
 </li>
-<li><p>很自信，<strong>没有对拍</strong>。</p>
-</li>
-<li><p>没有仔细思考，也没有草稿纸上具体分析，也因为没有对拍而没有面向数据发现问题的机会。</p>
-</li>
-<li><p>一个状态有两个属性，所以要正确转移，应当维护一个状态的最大、次大、第三大的转移来源。</p>
-</li>
-<li><p>我直接套用了一个状态只有一个属性时维护最大和次大转移来源的做法。看来是对其理解不够。</p>
-</li>
-<li><p>我甚至进行了一通没有在草稿纸上的假证明，以为连次大到次大这种转移都是不必要的。</p>
-</li>
-<li><p><strong>教训是：</strong> 不要盲目自信；该用草稿纸的时候就用草稿纸；对一些想到的经典做法要仔细考察其适用情况，要理解到位。</p>
+<li>
+<p><a target="_blank" rel="noopener" href="http://119.27.163.117">InfOJ</a> 上的民间数据测评结果：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathcolor="red"><mn>30</mn><mstyle mathcolor="black"><mo>+</mo><mstyle mathcolor="green"><mn>100</mn><mstyle mathcolor="black"><mo>+</mo><mstyle mathcolor="orange"><mn>40</mn><mstyle mathcolor="black"><mo>+</mo><mstyle mathcolor="orange"><mn>40</mn><mstyle mathcolor="black"><mo>=</mo><mstyle mathcolor="orange"><mn>210</mn><mtext> </mtext><mstyle mathcolor="black"><mi mathvariant="normal">p</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">s</mi></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mstyle></mrow><annotation encoding="application/x-tex">\rm{\color{red}30\color{black}+\color{green}100\color{black}+\color{orange}40\color{black}+\color{orange}40\color{black}=\color{orange}210\ \color{black}pts}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord"><span class="mord mathrm" style="color:red;">30</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin" style="color:black;">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathrm" style="color:green;">100</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin" style="color:black;">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathrm" style="color:orange;">40</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin" style="color:black;">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathrm" style="color:orange;">40</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel" style="color:black;">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathrm" style="color:orange;">210</span><span class="mspace" style="color:orange;"><span style="color:orange;"> </span></span><span class="mord mathrm" style="color:black;">pts</span></span></span></span></span></span>。</p>
 </li>
 </ul>
-</li>
-<li><p>第 2 题：</p>
+<h4 id="逐题分析">逐题分析</h4>
 <ul>
-<li><p>这道题顺利过了，本身没有什么问题。</p>
-</li>
-<li><p>写 ST 表和写线段树我觉得代码难度可能区别并不是很大，不过如果选择了封装可能实现起来就容易一些。</p>
-</li>
-<li><p>我写的是不封装的线段树，一共实现了 <code>blda</code> <code>bldb</code> <code>qpxa</code> <code>qpna</code> <code>qnxa</code> <code>qnna</code> <code>qmxb</code> <code>qmnb</code> 这 8 个函数。</p>
-</li>
-<li><p>码了大概一个小时。本题一共用时大概 80 分钟。</p>
-</li>
-<li><p>这道题处理得慢了点，所以后面比较局促。</p>
-</li>
-</ul>
-</li>
-<li><p>第 3 题：</p>
+<li>
+<p>第 1 题：</p>
 <ul>
-<li><p>这道题别说让我看出条件 1 和条件 2 的关系了，我直接一开始就很谔谔地把条件 2 读错了。</p>
+<li>
+<p>开场约 20min 想到做法，约 40min 过了样例。</p>
 </li>
-<li><p>第 1 个样例都没有通过，我看了看样例解释的图，才明白正确的题意是什么。</p>
+<li>
+<p>很自信，<strong>没有对拍</strong>。</p>
 </li>
-<li><p>彼时时间已很紧了，所以快速地加了点正确性都不对的修改就放下了。</p>
+<li>
+<p>没有仔细思考，也没有草稿纸上具体分析，也因为没有对拍而没有面向数据发现问题的机会。</p>
 </li>
-<li><p>时间紧迫时的读题能力（也就包括了不浪费时间在读错题上的能力）需要加强。至于序列哈希的做法，那大概是需要平时做题积攒经验。</p>
+<li>
+<p>一个状态有两个属性，所以要正确转移，应当维护一个状态的最大、次大、第三大的转移来源。</p>
+</li>
+<li>
+<p>我直接套用了一个状态只有一个属性时维护最大和次大转移来源的做法。看来是对其理解不够。</p>
+</li>
+<li>
+<p>我甚至进行了一通没有在草稿纸上的假证明，以为连次大到次大这种转移都是不必要的。</p>
+</li>
+<li>
+<p><strong>教训是：</strong> 不要盲目自信；该用草稿纸的时候就用草稿纸；对一些想到的经典做法要仔细考察其适用情况，要理解到位。</p>
 </li>
 </ul>
 </li>
-<li><p>第 4 题：</p>
+<li>
+<p>第 2 题：</p>
 <ul>
-<li><p>这道题和第 3 题一样是在时间比较紧迫的情况下看的。</p>
+<li>
+<p>这道题顺利过了，本身没有什么问题。</p>
 </li>
-<li><p>第 3 题体现了需要时间紧迫时的读准题的能力，这道题体现了需要时间紧迫时的想清楚题的能力。</p>
+<li>
+<p>写 ST 表和写线段树我觉得代码难度可能区别并不是很大，不过如果选择了封装可能实现起来就容易一些。</p>
 </li>
-<li><p>这道题容易看出 DDP 这个方向，关键在于要把 DP 转移想清楚了。</p>
+<li>
+<p>我写的是不封装的线段树，一共实现了 <code>blda</code> <code>bldb</code> <code>qpxa</code> <code>qpna</code> <code>qnxa</code> <code>qnna</code> <code>qmxb</code> <code>qmnb</code> 这 8 个函数。</p>
 </li>
-<li><p>我以为 $k &#x3D; 3$ 时绕出去也是没用的，成功地让我的暴力分也不可能拿满。</p>
+<li>
+<p>码了大概一个小时。本题一共用时大概 80 分钟。</p>
 </li>
-<li><p>码力也不够，看了剩下的时间，不敢写 DDP。</p>
+<li>
+<p>这道题处理得慢了点，所以后面比较局促。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>第 3 题：</p>
+<ul>
+<li>
+<p>这道题别说让我看出条件 1 和条件 2 的关系了，我直接一开始就很谔谔地把条件 2 读错了。</p>
+</li>
+<li>
+<p>第 1 个样例都没有通过，我看了看样例解释的图，才明白正确的题意是什么。</p>
+</li>
+<li>
+<p>彼时时间已很紧了，所以快速地加了点正确性都不对的修改就放下了。</p>
+</li>
+<li>
+<p>时间紧迫时的读题能力（也就包括了不浪费时间在读错题上的能力）需要加强。至于序列哈希的做法，那大概是需要平时做题积攒经验。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>第 4 题：</p>
+<ul>
+<li>
+<p>这道题和第 3 题一样是在时间比较紧迫的情况下看的。</p>
+</li>
+<li>
+<p>第 3 题体现了需要时间紧迫时的读准题的能力，这道题体现了需要时间紧迫时的想清楚题的能力。</p>
+</li>
+<li>
+<p>这道题容易看出 DDP 这个方向，关键在于要把 DP 转移想清楚了。</p>
+</li>
+<li>
+<p>我以为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">k = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 时绕出去也是没用的，成功地让我的暴力分也不可能拿满。</p>
+</li>
+<li>
+<p>码力也不够，看了剩下的时间，不敢写 DDP。</p>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="总体认识"><a href="#总体认识" class="headerlink" title="总体认识"></a>总体认识</h4><ul>
-<li><p>想题一要想准二要想快，码题一要码准二要码快。</p>
+<h4 id="总体认识">总体认识</h4>
+<ul>
+<li>
+<p>想题一要想准二要想快，码题一要码准二要码快。</p>
 </li>
-<li><p>平时训练要积攒一些方法技巧，要把一个解决问题的方法理解到位。</p>
+<li>
+<p>平时训练要积攒一些方法技巧，要把一个解决问题的方法理解到位。</p>
 </li>
 </ul>
 <br />
-
 <p>以下内容仅供参考。</p>
-<h3 id="几个省的情况"><a href="#几个省的情况" class="headerlink" title="几个省的情况"></a>几个省的情况</h3><blockquote>
-<p>陕西省信息来自某校选测，其余三省信息来自 <a target="_blank" rel="noopener" href="http://119.27.163.117/">InfOJ</a> 的民间数据和模拟测评。</p>
+<h3 id="几个省的情况">几个省的情况</h3>
+<blockquote>
+<p>陕西省信息来自某校选测，其余三省信息来自 <a target="_blank" rel="noopener" href="http://119.27.163.117">InfOJ</a> 的民间数据和模拟测评。</p>
 </blockquote>
 <p><strong>陕西（SN）</strong>，湖南（HN），北京（BJ），重庆（CQ）。</p>
-<h4 id="陕西省（SN）"><a href="#陕西省（SN）" class="headerlink" title="陕西省（SN）"></a>陕西省（SN）</h4><ul>
-<li><p>$\ge 300$：$4 \sim 5$ 人；</p>
+<h4 id="陕西省（SN）">陕西省（SN）</h4>
+<ul>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>300</mn></mrow><annotation encoding="application/x-tex">\ge 300</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">300</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>∼</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">4 \sim 5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 250$：$7$ 人。</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>250</mn></mrow><annotation encoding="application/x-tex">\ge 250</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">250</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span> 人。</p>
 </li>
 </ul>
 <p>事实证明，拿稳应该拿的分是很重要的。</p>
-<h4 id="湖南省（HN）"><a href="#湖南省（HN）" class="headerlink" title="湖南省（HN）"></a>湖南省（HN）</h4><ul>
-<li><p>非零分提交：$458$ 人；</p>
+<h4 id="湖南省（HN）">湖南省（HN）</h4>
+<ul>
+<li>
+<p>非零分提交：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>458</mn></mrow><annotation encoding="application/x-tex">458</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">458</span></span></span></span> 人；</p>
 </li>
-<li><p>$&#x3D; 400$：$3$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>400</mn></mrow><annotation encoding="application/x-tex">= 400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 300$：$33$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>300</mn></mrow><annotation encoding="application/x-tex">\ge 300</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">300</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>33</mn></mrow><annotation encoding="application/x-tex">33</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">33</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 250$：$54$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>250</mn></mrow><annotation encoding="application/x-tex">\ge 250</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">250</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>54</mn></mrow><annotation encoding="application/x-tex">54</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">54</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 200$：$97$ 人。</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>200</mn></mrow><annotation encoding="application/x-tex">\ge 200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">200</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>97</mn></mrow><annotation encoding="application/x-tex">97</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">97</span></span></span></span> 人。</p>
 </li>
 </ul>
 <p>第 1 题和第 2 题情况基本相仿，大概 100 人左右拿到了满分。</p>
 <p>高分段第 4 题比第 3 题表现好一点，看来 HN 确实更强于稳扎稳打。</p>
-<h4 id="北京市（BJ）"><a href="#北京市（BJ）" class="headerlink" title="北京市（BJ）"></a>北京市（BJ）</h4><ul>
-<li><p>非零分提交：$701$ 人；</p>
+<h4 id="北京市（BJ）">北京市（BJ）</h4>
+<ul>
+<li>
+<p>非零分提交：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>701</mn></mrow><annotation encoding="application/x-tex">701</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">701</span></span></span></span> 人；</p>
 </li>
-<li><p>$&#x3D; 400$：$6$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>400</mn></mrow><annotation encoding="application/x-tex">= 400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 300$：$30$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>300</mn></mrow><annotation encoding="application/x-tex">\ge 300</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">300</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn></mrow><annotation encoding="application/x-tex">30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 250$：$67$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>250</mn></mrow><annotation encoding="application/x-tex">\ge 250</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">250</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>67</mn></mrow><annotation encoding="application/x-tex">67</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">67</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 200$：$126$ 人。</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>200</mn></mrow><annotation encoding="application/x-tex">\ge 200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">200</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>126</mn></mrow><annotation encoding="application/x-tex">126</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">126</span></span></span></span> 人。</p>
 </li>
 </ul>
 <p>第 1 题和第 2 题情况基本相仿，大概 100 人左右拿到了满分。</p>
 <p>高分段第 4 题比第 3 题表现明显好一些，看来 BJ 同样更强于稳扎稳打。</p>
-<h4 id="重庆市（CQ）"><a href="#重庆市（CQ）" class="headerlink" title="重庆市（CQ）"></a>重庆市（CQ）</h4><ul>
-<li><p>非零分提交：$438$ 人；</p>
+<h4 id="重庆市（CQ）">重庆市（CQ）</h4>
+<ul>
+<li>
+<p>非零分提交：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>438</mn></mrow><annotation encoding="application/x-tex">438</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">438</span></span></span></span> 人；</p>
 </li>
-<li><p>$&#x3D; 400$：$4$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>400</mn></mrow><annotation encoding="application/x-tex">= 400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 300$：$47$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>300</mn></mrow><annotation encoding="application/x-tex">\ge 300</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">300</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>47</mn></mrow><annotation encoding="application/x-tex">47</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">47</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 250$：$87$ 人；</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>250</mn></mrow><annotation encoding="application/x-tex">\ge 250</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">250</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>87</mn></mrow><annotation encoding="application/x-tex">87</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">87</span></span></span></span> 人；</p>
 </li>
-<li><p>$\ge 200$：$140$ 人。</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mn>200</mn></mrow><annotation encoding="application/x-tex">\ge 200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">200</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>140</mn></mrow><annotation encoding="application/x-tex">140</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">140</span></span></span></span> 人。</p>
 </li>
 </ul>
 <p>第 2 题比第 1 题表现好。</p>
 <p>高分段第 4 题比第 3 题明显表现好一些，看来 CQ 同样更强于稳扎稳打。</p>
 <p>上面的若干分数段 CQ 基本上都比 HN 和 BJ 表现好，原因之一应该是 CQ 的第 2 题有约 160 人拿到了满分。</p>
 <br />
-
-<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>各位 NOIP 加油。</p>
+<h3 id="结束">结束</h3>
+<p>各位 NOIP 加油。</p>
 
                 
               </div>
@@ -766,7 +855,6 @@
 
 
 
-
     
 
     
@@ -952,49 +1040,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
