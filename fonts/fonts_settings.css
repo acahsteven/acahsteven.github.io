@@ -13,9 +13,9 @@ body, h1, h2, h3, h4, h5, h6, strong, .active {font-family: 'georgia', 'STZhongs
 /*body, h1, h2, h3, h4, h5, h6, strong {font-family: 'georgia', 'STZhongsong' !important;}*/
 p, .index-excerpt, .link-intro {font-family: 'georgialight', 'STSong';}
 p.h4, p.h5, p.toc-header {font-family: 'georgia', 'STZhongsong';}
+p.note {font-family: 'georgialight', 'STFangsong';}
 blockquote, blockquote>p {font-family: 'georgialight', 'STFangsong';}
 code, .markdown-body .highlight .notranslate {font-family: "fira code light" !important; font-feature-settings: "liga" 1, "dlig" 1 !important;}
-.note {font-family: 'STFangsong' !important;}
 /* font-variant-ligatures: discretionary-ligatures !important;}*/
 /*code, .markdown-body .highlight .notranslate {font-family: "fira code light" !important; font-feature-settings: "liga" , "dlig" !important; -webkit-font-feature-settings: "liga" , "dlig" !important; text-rendering: optimizeLegibility;}*/
 /*code, .markdown-body .highlight .notranslate {font-family: "fira code light" !important; font-variant: common-ligatures, discretionary-ligatures !important; text-rendering: optimizeLegibility;}*/
